@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="something-p">
+    <output-path>$PROJECT_DIR$/classes/artifacts/something_p</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="something-p" />
+        </element>
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/appengine-web.xml" />
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="com.google.appengine:appengine-api-1.0-sdk:Release" />
+          <element id="library" level="project" name="com.googlecode.objectify:objectify:5.1.22" />
+          <element id="library" level="project" name="javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="javax.servlet:servlet-api:2.5" />
+          <element id="library" level="project" name="com.google.endpoints:endpoints-framework:Release" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

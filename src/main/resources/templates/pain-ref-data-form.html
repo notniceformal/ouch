@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="js/mdl/material.min.css">
+    <link rel="stylesheet" href="js/mdl/mdl-selectfield.min.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+</head>
+
+<body>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-color--grey-100 mdl-color-text--grey-800">
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+
+        <div class="mdl-layout__header-row mdl-color--deep-purple mdl-color-text--white">
+            <span class="mdl-layout-title">Oucheee!</span>
+            <div class="mdl-layout-spacer"></div>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/ouch">Capture</a>
+                <a class="mdl-navigation__link" href="/pain-data">Summary</a>
+                <a class="mdl-navigation__link" href="/pain-ref-data">RefData</a>
+            </nav>
+        </div>
+
+    </header>
+
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title mdl-color--deep-purple mdl-color-text--white">Oucheee!</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/ouch">Capture</a>
+            <a class="mdl-navigation__link" href="/pain-data">Summary</a>
+            <a class="mdl-navigation__link" href="/pain-ref-data">RefData</a>
+        </nav>
+    </div>
+
+    <main class="mdl-layout__content">
+
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar mdl-color--grey-200">
+                <a href="#addCauseCategoryTab" class="mdl-tabs__tab is-active"><i>Add Cause..</i></a>
+                <a href="#viewCauseCategoryTab" class="mdl-tabs__tab">View all</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="addCauseCategoryTab">
+                <form action="#" th:action="@{/causes}" th:object="${causeCategory}" method="post" class="col s12"
+                      id="causeCategoryForm">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input placeholder="Cause Description" id="causeCategory" type="text" class="mdl-textfield__input"
+                                       form="causeCategoryForm" th:field="*{causeDescription}" required>
+                                <label class="mdl-textfield__label" for="causeCategory">Cause Category</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col"></div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--2-col">
+                            <button type="submit" value="Submit"
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-color--deep-purple mdl-color-text--white">
+                                Submit
+                            </button>
+                        </div>
+                        <div class="mdl-cell mdl-cell--10-col">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mdl-tabs__panel" id="viewCauseCategoryTab">
+                <ul class='mdl-list'>
+                    <li class="mdl-list__item" th:each="painCause : ${allCauses}" th:value="*{painCause.causeDescription}" th:text="*{painCause.causeDescription}">
+                        <span class="mdl-list__item-primary-content"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar mdl-color--grey-200">
+                <a href="#addOccurrenceTab" class="mdl-tabs__tab is-active"><i>Add Occurrence..</i></a>
+                <a href="#viewOccurrenceTab" class="mdl-tabs__tab">View All</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="addOccurrenceTab">
+                <form action="#" th:action="@{/occurrences}" th:object="${occurrenceTime}" method="post" class="col s12"
+                      id="occurrenceTimeForm">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input placeholder="Time Description" id="occurrenceTime" type="text" class="mdl-textfield__input"
+                                       form="occurrenceTimeForm" th:field="*{timeDescription}" required>
+                                <label class="mdl-textfield__label" for="causeCategory">Occurrence Time</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col"></div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--2-col">
+                            <button type="submit" value="Submit"
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-color--deep-purple mdl-color-text--white">
+                                Submit
+                            </button>
+                        </div>
+                        <div class="mdl-cell mdl-cell--10-col">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mdl-tabs__panel" id="viewOccurrenceTab">
+                <ul class='mdl-list'>
+                    <li class="mdl-list__item" th:each="occurrence : ${allOccurrences}" th:value="*{occurrence.timeDescription}" th:text="*{occurrence.timeDescription}">
+                        <span class="mdl-list__item-primary-content"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar mdl-color--grey-200">
+                <a href="#addPositionTab" class="mdl-tabs__tab is-active"><i>Add Position..</i></a>
+                <a href="#viewPositionTab" class="mdl-tabs__tab">View All</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="addPositionTab">
+                <form action="#" th:action="@{/positions}" th:object="${painPosition}" method="post" class="col s12"
+                      id="addPositionForm">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input placeholder="Position Description" id="painPosition" type="text" class="mdl-textfield__input"
+                                       form="addPositionForm" th:field="*{positionName}" required>
+                                <label class="mdl-textfield__label" for="painPosition">Position</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col"></div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--2-col">
+                            <button type="submit" value="Submit"
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-color--deep-purple mdl-color-text--white">
+                                Submit
+                            </button>
+                        </div>
+                        <div class="mdl-cell mdl-cell--10-col">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mdl-tabs__panel" id="viewPositionTab">
+                <ul class='mdl-list'>
+                    <li class="mdl-list__item" th:each="position : ${allPositions}" th:value="*{position.positionName}" th:text="*{position.positionName}">
+                        <span class="mdl-list__item-primary-content"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar mdl-color--grey-200">
+                <a href="#addPainTypeTab" class="mdl-tabs__tab is-active"><i>Add Type..</i></a>
+                <a href="#viewPainTypeTab" class="mdl-tabs__tab">View All</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="addPainTypeTab">
+                <form action="#" th:action="@{/types}" th:object="${painType}" method="post" class="col s12"
+                      id="addPainTypeForm">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input placeholder="Type Description" id="painType" type="text" class="mdl-textfield__input"
+                                       form="addPainTypeForm" th:field="*{typeDescription}" required>
+                                <label class="mdl-textfield__label" for="painType">Type</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col"></div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--2-col">
+                            <button type="submit" value="Submit"
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-color--deep-purple mdl-color-text--white">
+                                Submit
+                            </button>
+                        </div>
+                        <div class="mdl-cell mdl-cell--10-col">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mdl-tabs__panel" id="viewPainTypeTab">
+                <ul class='mdl-list'>
+                    <li class="mdl-list__item" th:each="painType : ${allPainTypes}" th:value="*{painType.typeDescription}" th:text="*{painType.typeDescription}">
+                        <span class="mdl-list__item-primary-content"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar mdl-color--grey-200">
+                <a href="#addRemedyCategoryTab" class="mdl-tabs__tab is-active"><i>Add Remedy..</i></a>
+                <a href="#viewRemedyCategoryTab" class="mdl-tabs__tab">View All</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="addRemedyCategoryTab">
+                <form action="#" th:action="@{/remedies}" th:object="${remedyCategory}" method="post" class="col s12"
+                      id="addRemedyCategoryForm">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input placeholder="Remedy Description" id="remedyCategory" type="text" class="mdl-textfield__input"
+                                       form="addRemedyCategoryForm" th:field="*{remedyDescription}" required>
+                                <label class="mdl-textfield__label" for="remedyCategory">Remedy</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col"></div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--2-col">
+                            <button type="submit" value="Submit"
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-color--deep-purple mdl-color-text--white">
+                                Submit
+                            </button>
+                        </div>
+                        <div class="mdl-cell mdl-cell--10-col">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mdl-tabs__panel" id="viewRemedyCategoryTab">
+                <ul class='mdl-list'>
+                    <li class="mdl-list__item" th:each="remedy : ${allRemedies}" th:value="*{remedy.remedyDescription}" th:text="*{remedy.remedyDescription}">
+                        <span class="mdl-list__item-primary-content"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar mdl-color--grey-200">
+                <a href="#addTemperatureTab" class="mdl-tabs__tab is-active"><i>Add Temperature..</i></a>
+                <a href="#viewTemperatureTab" class="mdl-tabs__tab">View All</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="addTemperatureTab">
+                <form action="#" th:action="@{/temperatures}" th:object="${temperature}" method="post" class="col s12"
+                      id="addTemperatureForm">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input placeholder="Temperature Description" id="temperature" type="text" class="mdl-textfield__input"
+                                       form="addTemperatureForm" th:field="*{temperatureDescription}" required>
+                                <label class="mdl-textfield__label" for="temperature">Temperature</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col"></div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--2-col">
+                            <button type="submit" value="Submit"
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-color--deep-purple mdl-color-text--white">
+                                Submit
+                            </button>
+                        </div>
+                        <div class="mdl-cell mdl-cell--10-col">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mdl-tabs__panel" id="viewTemperatureTab">
+                <ul class='mdl-list'>
+                    <li class="mdl-list__item" th:each="temperature : ${allTemperatures}" th:value="*{temperature.temperatureDescription}" th:text="*{temperature.temperatureDescription}">
+                        <span class="mdl-list__item-primary-content"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo">Oucheee!</div>
+            <ul class="mdl-mini-footer__link-list">
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Privacy & Terms</a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+</div>
+
+
+<!--JavaScript at end of body for optimized loading-->
+<script defer src="js\mdl\material.min.js"></script>
+<script defer src="js\mdl\mdl-selectfield.min.js"></script>
+</body>
+</html>
